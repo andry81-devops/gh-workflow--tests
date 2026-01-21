@@ -18,26 +18,26 @@ if [[ -z "$GH_WORKFLOW_ROOT" ]]; then
   exit 255
 fi
 
-GH_WORKFLOW_TESTS_PROJECT_ROOT=$(realpath $SOURCE_DIR/..)
-
-export TEMP_DIR=$GH_WORKFLOW_TESTS_PROJECT_ROOT/tmp
-
-[[ -d $TEMP_DIR ]] || mkdir $TEMP_DIR
-
-case "$OSTYPE" in
-  msys* | mingw* | cygwin*)
-    if [[ -z "$YQ_EXEC" && -f "$GH_WORKFLOW_TESTS_PROJECT_ROOT/tools/yq.exe" ]]; then
-      YQ_EXEC=$(realpath $GH_WORKFLOW_TESTS_PROJECT_ROOT/tools/yq.exe)
-      if [[ -f "$YQ_EXEC" ]]; then
-        PATH=${YQ_EXEC%/*}:$PATH
-        export YQ_EXEC
-      fi
-    fi
-    ;;
-esac
-
 function __init__()
 {
+  GH_WORKFLOW_TESTS_PROJECT_ROOT=$(realpath $SOURCE_DIR/..)
+
+  export TEMP_DIR=$GH_WORKFLOW_TESTS_PROJECT_ROOT/tmp
+
+  [[ -d $TEMP_DIR ]] || mkdir $TEMP_DIR
+
+  case "$OSTYPE" in
+    msys* | mingw* | cygwin*)
+      if [[ -z "$YQ_EXEC" && -f "$GH_WORKFLOW_TESTS_PROJECT_ROOT/tools/yq.exe" ]]; then
+        YQ_EXEC=$GH_WORKFLOW_TESTS_PROJECT_ROOT/tools/yq.exe
+        if [[ -f "$YQ_EXEC" ]]; then
+          PATH=${YQ_EXEC%/*}:$PATH
+          export YQ_EXEC
+        fi
+      fi
+      ;;
+  esac
+
   echo 'PATH:'
   local arg
   local IFS=':'
@@ -45,8 +45,8 @@ function __init__()
     echo "  * $arg"
   done
   echo
+
+  GH_WORKFLOW_TESTS_PROJECT_ROOT_INIT0_DIR=$SOURCE_DIR
 }
 
 __init__
-
-GH_WORKFLOW_TESTS_PROJECT_ROOT_INIT0_DIR=$SOURCE_DIR
