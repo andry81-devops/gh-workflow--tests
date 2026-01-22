@@ -12,9 +12,11 @@ fi
 
 . $SOURCE_DIR/../../__init__/testlib.sh || return || exit
 
-function testlib_init_accum_content()
+function testlib_init_yq_workflow()
 {
-  . $GH_WORKFLOW_ROOT/bash/cache/accum-content.sh
+  . $GH_WORKFLOW_ROOT/bash/github/init-yq-workflow.sh
+
+  tkl_execute_calls gh
 
   echo
 

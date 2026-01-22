@@ -18,3 +18,21 @@ function testlib_fix_backend_paths()
     ;;
   esac
 }
+
+function testlib_test_file_eq()
+{
+  local fn0=${1##*/}
+  local fn1=${2##*/}
+
+  if cmp -s "$@"; then
+    echo "PASSED: ${TEST_DIR##*/}: \"$fn0\" \"$fn1\""
+  else
+    echo "FAILED: ${TEST_DIR##*/}: \"$fn0\" \"$fn1\""
+    testlib_print_diff "$@"
+  fi
+}
+
+function testlib_print_diff()
+{
+  diff -U0 -ad --horizon-lines=0 --suppress-common-lines "$@" | tail -n +3
+}
