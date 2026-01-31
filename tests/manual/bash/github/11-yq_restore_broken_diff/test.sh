@@ -18,9 +18,7 @@ TEST_DIR=$SOURCE_DIR
 
 function test()
 {
-  testlib_init_yq_workflow || return
-  testlib_yq_restore_edited_uniform_diff || return
-  testlib_test_file_eq "$TEST_DIR/test.diff.ref" "$TEMP_DIR/test-restored.diff"
+  testlib_test_yq_restore_edited_uniform_diff
 }
 
 if [[ -z "$BASH_LINENO" || BASH_LINENO[0] -eq 0 ]]; then

@@ -18,9 +18,7 @@ TEST_DIR=$SOURCE_DIR
 
 function test()
 {
-  testlib_init_yq_workflow || return
-  testlib_yq_edit ".\"content-index\".timestamp=\"123\"" || return
-  testlib_test_file_eq "$TEST_DIR/test.yml.ref" "$TEMP_DIR/test-edited-restored.yml"
+  testlib_test_yq_edit
 }
 
 if [[ -z "$BASH_LINENO" || BASH_LINENO[0] -eq 0 ]]; then
