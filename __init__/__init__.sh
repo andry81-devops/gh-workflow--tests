@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 SOURCE_FILE=${BASH_SOURCE[0]:-${0//\\//}}
 
@@ -22,7 +22,7 @@ function __init__()
 {
   GH_WORKFLOW_TESTS_PROJECT_ROOT=$(realpath $SOURCE_DIR/..)
 
-  export TEMP_DIR=$GH_WORKFLOW_TESTS_PROJECT_ROOT/tmp
+  export TEMP_DIR=$GH_WORKFLOW_TESTS_PROJECT_ROOT/.temp
 
   [[ -d $TEMP_DIR ]] || mkdir $TEMP_DIR
 

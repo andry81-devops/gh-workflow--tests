@@ -14,7 +14,7 @@ https://github.com/andry81-devops/gh-workflow
    git clone https://github.com/andry81-devops/gh-workflow
    ```
 
-2. Open Linux or Cygwin console, for example, in `tests/manual/bash/cache/*` directory.
+2. Open Linux or Cygwin console, for example, in `tests/manual/bash/github/*` directory.
 
 > [!NOTE]
 > Base distribution of Linux Ubuntu 20.x/24.x and Cygwin 3.x contains https://github.com/kislyuk/yq implementation.  
@@ -34,4 +34,4 @@ https://github.com/andry81-devops/gh-workflow
    ./test.sh
    ```
 
-6. The `/tmp` directory would contain the intermediate files to compare between each other.
+6. The `/.temp` directory would contain the intermediate files to compare between each other.

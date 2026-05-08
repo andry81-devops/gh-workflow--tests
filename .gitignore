@@ -1,3 +1,5 @@
-tmp/
-/**/out/
+/**/.log
+/**/.temp
+/**/_out
+/**/_externals
 tools/*
